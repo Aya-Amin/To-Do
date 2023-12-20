@@ -105,3 +105,22 @@ app.delete('/:userId', (req, res) => {
   }
 });
 
+//get all
+app.get('/', (req, res) => {
+  console.log('GET - all');
+
+  try {
+    Task.find((err, tasks) => {
+      if (err) {
+        console.log('GET - all: An error has occurred', err);
+        res.sendStatus(400);
+      } else {
+        console.log('GET - all: Success ', tasks);
+        res.sendStatus(200);
+      }
+    });
+  } catch (err) {
+    console.log('catch - GET - all: An error has occurred', err);
+    res.sendStatus(400);
+  }
+});
